@@ -26,6 +26,14 @@ const App = () => {
 
   const [cart, setCart] = useState([])
 
+  // maybe you want to keep track of the quantity...
+  // {
+  // qty: 1,
+  // book: {
+  // ...
+  // }
+  // }
+
   const addToCart = (bookToAdd) => {
     // bookToAdd is the book we clicked Add To Cart from!
     let newCart = [...cart]
@@ -37,6 +45,15 @@ const App = () => {
     // bookToAdd is an object
     // I cannot set immediately cart to hold an object :(
     setCart(bookToAdd)
+  }
+
+  const removeFromCart = (bookIndexInCart) => {
+    let newCart = cart.filter((book, i) => i !== bookIndexInCart)
+    setCart(newCart)
+    // let newCart = [...cart]
+    // let indexOfBookToRemove = cart.findIndex((book) => book.id === bookId)
+    // newCart.splice(indexOfBookToRemove, 1)
+    // setCart(newCart)
   }
 
   return (
@@ -53,7 +70,7 @@ const App = () => {
         <hr />
         <Routes>
           <Route path='/' element={<BookStore addToCart={addToCart} />} />
-          <Route path='/cart' element={<Cart cart={cart} />} />
+          <Route path='/cart' element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
         </Routes>
       </Container>
     </BrowserRouter>

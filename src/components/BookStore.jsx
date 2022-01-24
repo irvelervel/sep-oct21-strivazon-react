@@ -45,6 +45,9 @@ class BookStore extends Component {
           <BookDetail
             bookSelected={this.state.bookSelected}
             addToCart={this.props.addToCart}
+          // I'm receiving addToCart from App just for passing it
+          // down to BookDetail!
+          // this process is called "prop drilling"
           />
         </Col>
       </Row>
